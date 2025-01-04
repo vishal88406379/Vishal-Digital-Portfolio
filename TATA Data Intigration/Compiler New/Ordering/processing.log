@@ -1,0 +1,13 @@
+2024-12-02 17:16:36,189 - ERROR - Error processing Intransit file \\Tata_Server\TATASERVER\OGYS\December 2024\TATA PCBU\Bhasin Motors\intransit\purchase saraipali.xlsx: 'Location'
+2024-12-02 17:16:37,952 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Bhasin Motors/Scope DATA/OEMInvoice.xlsx
+2024-12-06 16:59:49,509 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Bhasin Motors/6 Dec/Scope DATA/OEMInvoice.xlsx
+2024-12-07 10:53:16,765 - ERROR - Error processing Intransit file \\Tata_Server\TATASERVER\OGYS\December 2024\TATA PCBU\Brijwheel auto\intransit\intransit dholpur.xlsx: 'Location'
+2024-12-07 10:53:22,328 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Brijwheel auto/Scope DATA/OEMInvoice.xlsx
+2024-12-07 11:23:24,097 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Shree ji Automart pvt Ltd/7 Dec/Scope DATA/OEMInvoice.xlsx
+2024-12-07 15:10:25,362 - ERROR - Error processing Intransit file \\Tata_Server\TATASERVER\OGYS\December 2024\TATA PCBU\Himgiri Automobiles\7 Dec\intransit\purchase Manesar ev.xlsx: 'Location'
+2024-12-07 15:10:31,666 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Himgiri Automobiles/7 Dec/Scope DATa/OEMInvoice.xlsx
+2024-12-09 15:44:58,825 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Go Auto/9 Dec/SCope Data/OEMInvoice.xlsx
+2024-12-09 16:30:29,795 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/Bhasin Motors/9 Dec/Scope DATA/OEMInvoice.xlsx
+2024-12-10 18:40:47,724 - INFO - Combined and filtered data saved to //Tata_Server/TATASERVER/OGYS/December 2024/TATA PCBU/JD Autonation/10 Dec/Scoep od/OEMInvoice.xlsx
+2024-12-11 14:00:16,706 - ERROR - Error saving output file: name 'openpyxl' is not defined
+2024-12-13 15:11:28,140 - INFO - Combined and filtered data saved to T:/OGYS/December 2024/TATA PCBU/Shree ji Automart pvt Ltd/13 Dec/Scope od/OEMInvoice.xlsx

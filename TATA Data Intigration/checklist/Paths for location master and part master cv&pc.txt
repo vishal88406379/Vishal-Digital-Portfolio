@@ -1,0 +1,8 @@
+Location Master
+\\tata_server\TATASERVER\TATA Data Intigration\checklist\All Location TATA CVBU & PCBU.xlsx
+
+Partmaster PC
+\\tata_server\TATASERVER\TATA Data Intigration\checklist\Partmaster.xlsx
+
+Partmaster CV
+\\tata_server\TATASERVER\TATA Data Intigration\checklist\PartmasterCVBU.xlsx
