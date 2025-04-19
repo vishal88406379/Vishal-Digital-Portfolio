@@ -21,8 +21,24 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        
       </nav>
+      <div class="resume-upload">
+        <form id="resume-upload-form" enctype="multipart/form-data">
+          <input type="file" id="resume-file" accept="application/pdf" />
+          <button type="button" id="upload-resume-btn">Upload Resume</button>
+        </form>
+        <div id="upload-message" style="display: none; color: green">
+          Resume uploaded successfully!
+        </div>
+      </div>
     </header>
+    <section class="data-integration-downloads">
+      <h2>TATA Data Integration Downloads</h2>
+      <div id="tree-container" class="tree-view">
+        <!-- Collapsible tree view will be loaded here -->
+      </div>
+    </section>
 
     <section class="intro">
       <div class="intro-text">
@@ -178,8 +194,8 @@
           </div>
         </div>
         <div class="contact-form">
-          <form action="send_email.php" method="POST" id="contact-form">
-            <input type="text" name="name" placeholder="Enter Your Name" required />
+          <form id="contact-form">
+          <input type="text" name="name" placeholder="Enter Your Name" required />
             <input type="email" name="email" placeholder="Enter Your Email" required />
             <input type="text" name="subject" placeholder="Enter Your Subject" required />
             <textarea name="message" placeholder="Enter Your Message" required></textarea>
@@ -188,7 +204,331 @@
         </div>
       </div>
     </section>
+    <style>
+      .tree-view {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #f9f9f9;
+      }
+    
+      .tree-node {
+        margin-left: 20px;
+      }
+    
+      .tree-node-content {
+        cursor: pointer;
+        padding: 5px;
+      }
+    
+      .tree-node-content.folder {
+        font-weight: bold;
+      }
+      
+      .tree-node-content.file {
+        margin-left: 20px;
+      }
+    
+      .tree-node-content:hover {
+        background-color: #eee;
+      }
+    
+      .tree-node-children {
+        display: none;
+        list-style: none;
+        padding-left: 20px;
+      }
+    
+      .tree-node.expanded > .tree-node-children {
+        display: block;
+      }
+    
+      .tree-node-icon {
+        margin-right: 5px;
+      }
+      .data-integration-downloads {
+        text-align: center;
+        padding: 20px;
+      }
+    
+      .data-integration-downloads h2 {
+        margin-bottom: 20px;
+      }
+    
+      .tree-view {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        width: 80%;
+        margin: 0 auto;
+        max-height: 400px;
+        overflow-y: auto;
+        background-color: #f9f9f9;
+      }
+      
+      .tree-node {
+          margin-left: 20px;
+      }
+      
+      .tree-node-content {
+          cursor: pointer;
+          padding: 5px;
+          display: flex;
+          align-items: center;
+      }
+      
+      .tree-node-content.folder {
+          font-weight: bold;
+      }
+      
+      .tree-node-content.file {
+          margin-left: 20px;
+      }
+      
+      .tree-node-content:hover {
+          background-color: #eee;
+      }
+      
+      .tree-node-children {
+          display: none;
+          list-style: none;
+          padding-left: 20px;
+      }
+      
+      .tree-node.expanded > .tree-node-children {
+          display: block;
+      }
+      
+      .tree-node-icon {
+          margin-right: 5px;
+          width: 16px;
+          height: 16px;
+          display: inline-block;
+          text-align: center;
+      }
+      .tree-node-icon::before {
+          content: "\f07b"; /* Default: folder icon */
+          font-family: "Font Awesome 5 Free";
+          font-weight: 900;
+      }
+      
+      .tree-node.expanded > .tree-node-content > .tree-node-icon::before {
+        content: "\f07c"; 
+      }
+      .file-icon::before{
+        content: "\f15b"; /* Default: folder icon */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+      }
+      .tree-node-file{
+        margin-left: 20px;
+      }
+      .tree-node-content-file {
+          cursor: pointer;
+          padding: 5px;
+          display: flex;
+          align-items: center;
+          margin-left: 40px;
+      }
+      .file-link{
+        color: blue;
+        text-decoration: underline;
+        margin-left: 20px;
+      }
+      
+      </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const resumeUploadForm = document.getElementById("resume-upload-form");
+        const resumeFile = document.getElementById("resume-file");
+        const uploadResumeBtn = document.getElementById("upload-resume-btn");
+        const uploadMessage = document.getElementById("upload-message");
+        const contactForm = document.getElementById("contact-form");
+    
+        uploadResumeBtn.addEventListener("click", function () {
+          resumeFile.click();
+        });
+    
+        resumeFile.addEventListener("change", function () {
+          const file = resumeFile.files[0];
+          if (file && file.type === "application/pdf") {
+            const formData = new FormData(resumeUploadForm);
+            fetch("/upload_resume", {
+              method: "POST",
+              body: formData,
+            })
+              .then((response) => {
+                if (response.ok) {
+                  uploadMessage.style.display = "block";
+                  setTimeout(() => {
+                    uploadMessage.style.display = "none";
+                  }, 3000);
+                } else {
+                  alert("Failed to upload resume.");
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                alert("An error occurred while uploading the resume.");
+              });
+          } else {
+            alert("Please upload a PDF file.");
+          }
+        });
+    
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const name = contactForm.name.value;
+          const email = contactForm.email.value;
+          const message = contactForm.message.value;
+          const subject = contactForm.subject.value;
+    
+          fetch("/send_email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, message, subject }),
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Email sent successfully!");
+                contactForm.reset();
+              } else {
+                alert("Failed to send email.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred while sending the email.");
+            });
+        });
+        function createTreeNode(item, parent) {
+          const node = document.createElement('li');
+          node.classList.add('tree-node');
+        
+          const content = document.createElement('div');
+          content.classList.add('tree-node-content');
+        
+          const icon = document.createElement('span');
+          icon.classList.add('tree-node-icon');
+        
+          content.appendChild(icon);
+        
+          const text = document.createElement('span');
+          text.textContent = item.name;
+          content.appendChild(text);
+        
+          if (item.type === 'folder') {
+            content.classList.add('folder');
+            const children = document.createElement('ul');
+            children.classList.add('tree-node-children');
+            node.appendChild(content);
+            node.appendChild(children);
+            content.addEventListener('click', () => {
+              node.classList.toggle('expanded');
+            });
+        
+            if (item.children) {
+              item.children.forEach((child) => {
+                createTreeNode(child, children);
+              });
+            }
+          } else {
+            content.classList.add('file');
+            const link = document.createElement('a');
+            link.classList.add('file-link');
+            link.href = `/download/${item.path}`;
+            link.textContent = item.name;
+            link.download = item.name;
+            link.style.marginLeft = "40px";
+            content.classList.remove('tree-node-content');
+            content.classList.add("tree-node-content-file");
+            content.innerHTML = `<span class="tree-node-icon file-icon"></span>${item.name}`
+            node.appendChild(content);
+        
+            
+          }
+        
+          parent.appendChild(node);
+        }
 
+        function loadDataTree() {
+          fetch('/list_files')
+            .then(response => response.json())
+            .then(data => {
+              const treeContainer = document.getElementById('tree-container');
+              treeContainer.innerHTML = '';
+        
+              const root = document.createElement('ul');
+              root.classList.add('tree-node-children');
+              treeContainer.appendChild(root);
+              
+              data.forEach(item => {
+                createTreeNode(item, root);
+              });
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        
+        loadDataTree();
+        document.addEventListener("DOMContentLoaded", function () {
+            const resumeUploadForm = document.getElementById("resume-upload-form");
+            const resumeFile = document.getElementById("resume-file");
+            const uploadResumeBtn = document.getElementById("upload-resume-btn");
+            const uploadMessage = document.getElementById("upload-message");
+            const contactForm = document.getElementById("contact-form");
+    
+            uploadResumeBtn.addEventListener("click", function () {
+              resumeFile.click();
+            });
+          });
+      });
+    </script>
     <script src="script.js"></script>
+    <style>
+    .resume-upload {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    #resume-file {
+      display: none;
+    }
+    
+    #upload-resume-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    
+    #upload-resume-btn:hover {
+      background-color: #0056b3;
+    }
+    
+    #upload-message {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Adjust the gap as needed */
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    </style>
   </body>
 </html>
