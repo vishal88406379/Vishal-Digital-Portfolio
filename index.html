@@ -308,7 +308,7 @@
           display: inline-block;
           text-align: center;
       }
-      .tree-node-icon::before {
+      .tree-node-icon::before {\n          content: "\f07b"; /* Default: folder icon */\n          font-family: "Font Awesome 5 Free";\n          font-weight: 900;\n      }\n      \n      .tree-node.expanded > .tree-node-content > .tree-node-icon::before {\n        content: "\f07c"; \n      }
           content: "\f07b"; /* Default: folder icon */
           font-family: "Font Awesome 5 Free";
           font-weight: 900;
