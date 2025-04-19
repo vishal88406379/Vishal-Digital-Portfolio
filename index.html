@@ -23,23 +23,7 @@
         </ul>
         
       </nav>
-      <div class="resume-upload">
-        <form id="resume-upload-form" enctype="multipart/form-data">
-          <input type="file" id="resume-file" accept="application/pdf" />
-          <button type="button" id="upload-resume-btn">Upload Resume</button>
-        </form>
-        <div id="upload-message" style="display: none; color: green">
-          Resume uploaded successfully!
-        </div>
-      </div>
     </header>
-    <section class="data-integration-downloads">
-      <h2>TATA Data Integration Downloads</h2>
-      <div id="tree-container" class="tree-view">
-        <!-- Collapsible tree view will be loaded here -->
-      </div>
-    </section>
-
     <section class="intro">
       <div class="intro-text">
         <h1>
@@ -70,6 +54,13 @@
       <div class="intro-image">
         <img src="1.jpeg" alt="Vishal's Photo" />
       </div>
+    </section>
+    <section class="data-integration-downloads">
+        <h2>
+          TATA Data Integration Downloads<img src="python_logo.png" alt="Python Logo" style="height: 20px; vertical-align: middle; margin-left: 10px;">
+        </h2>
+        <div id="tree-container" class="tree-view">
+        </div>
     </section>
 
     <section class="about" id="about">
@@ -121,6 +112,16 @@
         </div>
       </div>
     </section>
+    <button id="toggle-resume-upload" class="btn">Update Resume</button>
+    <div id="resume-upload-area" style="display: none;">
+      <div class="resume-upload">
+        <form id="resume-upload-form" enctype="multipart/form-data">
+          <input type="file" id="resume-file" accept="application/pdf" />
+          <button type="button" id="upload-resume-btn">Upload Resume</button>
+        </form>
+        <div id="upload-message" style="display: none; color: green">Resume uploaded successfully!</div>
+      </div>
+    </div>
 
     <section class="skills-section" id="skills">
       <h2>Technical Skills</h2>
@@ -471,17 +472,21 @@
         }
         
         loadDataTree();
-        document.addEventListener("DOMContentLoaded", function () {
-            const resumeUploadForm = document.getElementById("resume-upload-form");
-            const resumeFile = document.getElementById("resume-file");
-            const uploadResumeBtn = document.getElementById("upload-resume-btn");
-            const uploadMessage = document.getElementById("upload-message");
-            const contactForm = document.getElementById("contact-form");
+        
+        const toggleResumeUploadBtn = document.getElementById("toggle-resume-upload");
+        const resumeUploadArea = document.getElementById("resume-upload-area");
     
-            uploadResumeBtn.addEventListener("click", function () {
-              resumeFile.click();
+        toggleResumeUploadBtn.addEventListener("click", function () {
+          if (resumeUploadArea.style.display === "none") {
+            resumeUploadArea.style.display = "block";
+          } else {
+            resumeUploadArea.style.display = "none";
+          }
             });
-          });
+            uploadResumeBtn.addEventListener("click", function () {
+                resumeFile.click();
+              });
+
       });
     </script>
     <script src="script.js"></script>

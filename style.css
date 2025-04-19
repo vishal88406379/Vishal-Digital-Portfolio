@@ -91,6 +91,14 @@ nav ul li a {
 .btn:hover {
   background-color: #00c4ff;
 }
+/* Style for the Update Resume button */
+#toggle-resume-upload {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+
+}
 
 .intro-image img, .about-image img {
   width: 400px;
@@ -300,6 +308,60 @@ nav ul li a {
 
 .contact-form .btn:hover {
   background-color: #00cce7;
+}
+
+/* Data Download Section Styles */
+.data-download-section {
+  background-color: #112233;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px 10px rgba(0, 240, 255, 0.1);
+  margin: 20px auto;
+  width: 80%;
+}
+
+.data-download-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.data-download-section .tree-view {
+  width: 100%;
+}
+
+.data-download-section .tree-node-content {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.data-download-section .tree-node-icon {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-align: center;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.data-download-section .tree-node-content.folder .tree-node-icon::before {
+  content: "\\f07c"; /* folder icon */
+}
+
+.data-download-section .tree-node-content.file .tree-node-icon::before {
+  content: "\\f15b"; /* file icon */
+}
+
+.data-download-section .file-link {
+  color: #00f0ff;
+  text-decoration: underline;
+}
+.data-download-section .tree-node-content:hover {
+  background-color: #223344;
+}
+#resume-upload-area {
+  padding: 20px;background-color: #112233;
 }
 
 /* Responsive Design */
